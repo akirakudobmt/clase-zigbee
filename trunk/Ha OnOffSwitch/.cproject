@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?fileVersion 4.0.0?>
+<cproject xmlns:sln="http://freescale.com/ns/beekit/solution" xmlns:tools="http://freescale.com/ns/beekit/tools" xmlns:mac="http://freescale.com/ns/beekit/mac" xmlns:blackboxhost_wrapper="http://freescale.com/ns/beekit/blackboxhost_wrapper" xmlns:plm="http://freescale.com/ns/beekit/plm" xmlns:blackboxhost_plm="http://freescale.com/ns/beekit/blackboxhost_plm" xmlns:nwk="http://freescale.com/ns/beekit/zigbee/beestack" xmlns:ssm="http://freescale.com/ns/beekit/ssm" xmlns:blackboxhost_ssm="http://freescale.com/ns/beekit/blackboxhost_ssm" xmlns:beeapps="http://freescale.com/ns/beekit/beeapps" xmlns:BlackBox="http://freescale.com/ns/beekit/BlackBox">
+  <storageModule moduleId="org.eclipse.cdt.core.settings">
+    <cconfiguration id="toolchain.config.hcs08.release.1719122750">
+      <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="toolchain.config.hcs08.release.1719122750" moduleId="org.eclipse.cdt.core.settings" name="Ha OnOffSwitch">
+        <externalSettings />
+        <extensions>
+          <extension id="org.eclipse.cdt.managedbuilder.core.ManagedBuildManager" point="org.eclipse.cdt.core.ScannerInfoProvider" />
+          <extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.LltErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.AsmErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.IcodeErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.S08ErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.MwfeErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.CobjErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.build.parser.hc.cdt.CDT_FSL_ErrorParser_816bit" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="com.freescale.core.ide.cdt.errorParsers.LnkErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+          <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser" />
+        </extensions>
+      </storageModule>
+      <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+        <configuration artifactExtension="abs" artifactName="Ha OnOffSwitch" buildProperties="" cleanCommand="&quot;${system:ECLIPSE_HOME}/../gnu/bin/rm&quot; -f" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;com.freescale.build.parser.hc.cdt.CDT_FSL_ErrorParser_816bit;com.freescale.core.ide.cdt.errorParsers.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;com.freescale.core.ide.cdt.errorParsers.MwfeErrorParser;com.freescale.core.ide.cdt.errorParsers.LnkErrorParser;com.freescale.core.ide.cdt.errorParsers.AsmErrorParser;com.freescale.core.ide.cdt.errorParsers.CobjErrorParser;com.freescale.core.ide.cdt.errorParsers.IcodeErrorParser;com.freescale.core.ide.cdt.errorParsers.LltErrorParser;com.freescale.core.ide.cdt.errorParsers.S08ErrorParser" id="toolchain.config.hcs08.release.1719122750" name="Ha OnOffSwitch" parent="toolchain.config.hcs08.release" preannouncebuildStep="Precompile the .prm file" prebuildStep="&quot;${MCUToolsBaseDir}/prog/chc08.exe&quot; -ArgFile&quot;PLM\Source\Common\Sys\crt0.args&quot; &quot;${ProjDirPath}\PLM\PRM\BeeStack_QE128_far_banked.prm&quot; -LpX -Lp=pre.prm">
+          <folderInfo id="toolchain.config.hcs08.release.1719122750." name="/" resourcePath="">
+            <toolChain id="hcs08.project.toolchain.741894558" name="HCS08 Toolchain" superClass="hcs08.project.toolchain">
+              <option id="hc08.toolchain.sharedoption.memoryModel.980916868" name="Memory Model (-M)" superClass="hc08.toolchain.sharedoption.memoryModel" value="hc08.toolchain.sharedoption.memoryModel.banked" valueType="enumerated" />
+              <option id="hc08.toolchain.sharedoption.mmu.1361898996" name="Enable Memory Management Unit (MMU) Support (-MMU)" superClass="hc08.toolchain.sharedoption.mmu" value="true" valueType="boolean" />
+              <targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="hc08.toolchain.platform.648612922" name="HC08 Targetplatform" superClass="hc08.toolchain.platform" />
+              <builder buildPath="${ProjDirPath}/Ha OnOffSwitch" id="hc08.toolchain.builder.1560751363" keepEnvironmentInBuildfile="false" name="Make Builder.Ha OnOffSwitch" superClass="hc08.toolchain.builder" />
+              <tool id="s08.toolchain.decoder.1843836747" name="Disassembler" superClass="s08.toolchain.decoder" />
+              <tool id="hc08.toolchain.linker.1182250191" name="Linker" superClass="hc08.toolchain.linker">
+                <option id="hc08.toolchain.linker.base.libraries.libs.1348288998" superClass="hc08.toolchain.linker.base.libraries.libs" valueType="libs">
+                  <listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}/lib/hc08c/lib/ansibim.lib&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}\ZigBee\Libs\BeeStackZedRNPSp2_S08QE128.lib&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}\BeeApps\SE\libecc.lib&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}\MacPhy\Libs\802.15.4_MAC_RFDZSNBNVNS_S08QE128.Lib&quot;" />
+                </option>
+                <option id="hc08.toolchain.linker.base.output.b.2025526990" superClass="hc08.toolchain.linker.base.output.b" value="true" valueType="boolean" />
+                <option id="hc08.toolchain.linker.base.general.paramFile.858186356" superClass="hc08.toolchain.linker.base.general.paramFile" value="${ProjDirPath}\Ha OnOffSwitch\pre.prm" valueType="string" />
+                <option id="hc08.toolchain.linker.base.general.otherflags.1830500180" superClass="hc08.toolchain.linker.base.general.otherflags" value=" -WmsgSd1100 -WmsgSd1912 -EnvSRECORD=s19" valueType="string" />
+                <inputType id="hc08.toolchain.linker.base.input.1042626620" name="Linker Input" superClass="hc08.toolchain.linker.base.input">
+                  <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)" />
+                  <additionalInput kind="additionalinput" paths="$(LIBS)" />
+                </inputType>
+              </tool>
+              <tool id="hc08.toolchain.burner.1414515280" name="Burner" superClass="hc08.toolchain.burner" />
+              <tool id="hcs08.toolchain.compiler.1017597488" name="HCS08 Compiler" superClass="hcs08.toolchain.compiler">
+                <option id="hc08.toolchain.compiler.base.preprocessor.defines.675439661" superClass="hc08.toolchain.compiler.base.preprocessor.defines" valueType="definedSymbols">
+                  <listOptionValue builtIn="false" value="gBeeStackIncluded_d=1" />
+                  <listOptionValue builtIn="false" value="INCLUDE_802_15_4" />
+                  <listOptionValue builtIn="false" value="gEndDevCapability_d=1" />
+                  <listOptionValue builtIn="false" value="Type_RFDZSNBNVNS" />
+                  <listOptionValue builtIn="false" value="gTargetQE128EVB_d=1" />
+                  <listOptionValue builtIn="false" value="PROCESSOR_QE128" />
+                  <listOptionValue builtIn="false" value="gStandardSecurity_d=0" />
+                  <listOptionValue builtIn="false" value="gMeshNetworkingCapability_d=1" />
+                  <listOptionValue builtIn="false" value="gZigbeeProIncluded_d=1" />
+                  <listOptionValue builtIn="false" value="gZtcIncluded_d=0" />
+                </option>
+                <option id="hsc08.toolchain.compiler.base.input.i.1738495502" name="Include File Path (-I)" superClass="hsc08.toolchain.compiler.base.input.i" valueType="includePath">
+                  <listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}\lib\HC08c\LIB&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}/lib/hc08c/device/include&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}/lib/hc08c/include&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}/lib/hc08c/device/asm_include&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/ZigBee\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\ZDO\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\Configure\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\StackGlobals\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\ZCL\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\HA\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\HC\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\SE\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\ASL\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/MacPhy\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/MacPhy\Phy\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\TS\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\TS\Source\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\ZTC\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\ZTC\Source\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Bootloader\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Accelerometer\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Common\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\CMT\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Display\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\IIC\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\NVM\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\SPI\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Touchpad\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\TMR\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\UART\&quot;" />
+                </option>
+                <option id="hc08.toolchain.compiler.base.language.propagate.const.volatile.2013992420" superClass="hc08.toolchain.compiler.base.language.propagate.const.volatile" value="true" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.typesize.enum.209945868" superClass="hc08.toolchain.compiler.base.typesize.enum" value="hc08.toolchain.compiler.base.typesize.enum.8" valueType="enumerated" />
+                <option id="hc08.toolchain.compiler.base.codegen.cswmaxlf.941739052" superClass="hc08.toolchain.compiler.base.codegen.cswmaxlf" value="0" valueType="string" />
+                <option id="hc08.toolchain.compiler.base.codegen.cswminlf.143936560" superClass="hc08.toolchain.compiler.base.codegen.cswminlf" value="0" valueType="string" />
+                <option id="hc08.toolchain.compiler.base.codegen.cswminslb.754356995" superClass="hc08.toolchain.compiler.base.codegen.cswminslb" value="9999" valueType="string" />
+                <option id="hc08.toolchain.compiler.base.output.ConfgLstFile.h.1945858527" superClass="hc08.toolchain.compiler.base.output.ConfgLstFile.h" value="true" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.output.alloc.const.obs.in.rom.655951475" superClass="hc08.toolchain.compiler.base.output.alloc.const.obs.in.rom" value="true" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.output.lasm.1418463481" superClass="hc08.toolchain.compiler.base.output.lasm" value="%n.lst" valueType="string" />
+                <option id="hc08.toolchain.compiler.base.general.otherflags.1514416466" superClass="hc08.toolchain.compiler.base.general.otherflags" value="-W1" valueType="string" />
+                <option id="hc08.toolchain.compiler.treeOpt.tree.1884643350" superClass="hc08.toolchain.compiler.treeOpt.tree" value="false" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.opt.cni.893385763" superClass="hc08.toolchain.compiler.base.opt.cni" value="true" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.opt.ousunu.58049332" superClass="hc08.toolchain.compiler.base.opt.ousunu" value="hc08.toolchain.compiler.base.opt.Ou" valueType="enumerated" />
+                <option id="hc08.toolchain.compiler.base.opt.odocf.1228734719" superClass="hc08.toolchain.compiler.base.opt.odocf" value="-Onca|-One|-Or|-Ont" valueType="string" />
+                <option id="hc08.toolchain.compiler.base.opt.obfv.599256432" superClass="hc08.toolchain.compiler.base.opt.obfv" value="true" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.opt.onca.1560436734" superClass="hc08.toolchain.compiler.base.opt.onca" value="false" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.opt.one.581111597" superClass="hc08.toolchain.compiler.base.opt.one" value="false" valueType="boolean" />
+                <option id="hc08.toolchain.compiler.base.opt.or.1393529350" superClass="hc08.toolchain.compiler.base.opt.or" value="false" valueType="boolean" />
+                <inputType id="hcs08.toolchain.compiler.base.input.c.1340038787" name="HCS08 Compiler C Input" superClass="hcs08.toolchain.compiler.base.input.c" />
+                <inputType id="hcs08.toolchain.compiler.base.input.cpp.879900950" name="HCS08 Compiler CPP Input" superClass="hcs08.toolchain.compiler.base.input.cpp" />
+              </tool>
+              <tool id="hc08.toolchain.assembler.132241308" name="HCS08 Assembler" superClass="hc08.toolchain.assembler">
+                <option id="hc08.toolchain.assembler.base.include.dirs.758665805" name="Include file search paths (-I)" superClass="hc08.toolchain.assembler.base.include.dirs" valueType="includePath">
+                  <listOptionValue builtIn="false" value="&quot;${MCUToolsBaseDir}\lib\HC08c\LIB&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/ZigBee\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\ZDO\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\Configure\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\StackGlobals\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\ZCL\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\HA\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\HC\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\SE\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/BeeApps\ASL\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/MacPhy\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/MacPhy\Phy\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\TS\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\TS\Source\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\ZTC\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/SSM\ZTC\Source\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Bootloader\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Accelerometer\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Common\Interface\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\CMT\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Display\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\IIC\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\NVM\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\SPI\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\Touchpad\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\TMR\&quot;" />
+                  <listOptionValue builtIn="false" value="&quot;${ProjDirPath}/PLM\Source\UART\&quot;" />
+                </option>
+                <option id="hc08.toolchain.asm.base.output.mmu.404505826" superClass="hc08.toolchain.asm.base.output.mmu" value="true" valueType="boolean" />
+                <inputType id="hc08.toolchain.assembler.base.input.862062478" name="HC08 Assembler Input" superClass="hc08.toolchain.assembler.base.input" />
+              </tool>
+              <tool id="hc08.toolchain.preprocessor.1538226242" name="Preprocessor" superClass="hc08.toolchain.preprocessor" />
+            </toolChain>
+          </folderInfo>
+          <fileInfo id="toolchain.config.hcs08.release.1719122750..cproject" name=".cproject" rcbsApplicability="disable" resourcePath=".cproject" toolsToInvoke="" />
+          <fileInfo id="toolchain.config.hcs08.release.1719122750..project" name=".project" rcbsApplicability="disable" resourcePath=".project" toolsToInvoke="" />
+          <sourceEntries>
+            <entry excluding="        |MacPhy\Interface\ASM_Interface.h|MacPhy\Interface\MacPhyMC1323X.h|MacPhy\Interface\Mc1323xHandler.h|MacPhy\Phy\Interface\PhyMC1323X.h|MacPhy\Phy\Interface\PhyDebugMC1323X.h|            |MacPhy\Phy\MC1323X\PhyISR.c|MacPhy\Phy\MC1323X\PhyPacketProcessor.c|MacPhy\Phy\MC1323X\PhyPlmeData.c|MacPhy\Phy\MC1323X\PhyTime.c|              |PLM\Source\Bootloader\BootloaderEeprom_AT25HP512C1_MC1321x.c|PLM\Source\Bootloader\BootloaderEeprom_AT45DB021D_MC1323x.c|            |PLM\Source\Eeprom\Eeprom_AT25HP512C1_MC1321x.c|PLM\Source\Eeprom\Eeprom_AT45DB021D_MC1323x.c|        |PLM\Source\Accelerometer\Accelerometer.c|PLM\Source\Accelerometer\Accelerometer.h|        |PLM\Interface\CMT_Interface.h|PLM\Interface\IoConfigMC1323x.h|        |PLM\Source\CMT\CMT.c|PLM\Source\CMT\CMT.h|PLM\Source\Display\Display_MC1323x_RCM.h|PLM\Source\Display\Display_MC1323x_RCM.c|PLM\Source\LPM\PWR_MC1323x.c|        |PLM\Source\Touchpad\Touchpad.c|PLM\Source\Touchpad\Touchpad.h|                    |.cproject|.project" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="" />
+          </sourceEntries>
+        </configuration>
+      </storageModule>
+      <storageModule moduleId="scannerConfiguration">
+        <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile" />
+        <profile id="com.freescale.coldfire.cdt.toolchain.linux.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="$/m68k-linux-gnu-gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.coldfire.cdt.cpp.toolchain.linux.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="$/m68k-linux-gnu-g++" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.coldfire.cdt.toolchain.uclinux.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="$/m68k-uclinux-gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.coldfire.cdt.cpp.toolchain.uclinux.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="$/m68k-uclinux-g++" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.coldfire.cdt.cpp.symbols.toolchain.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="" command="" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.coldfire.cdt.c.symbols.toolchain.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="" command="" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.hc08.cdt.toolchain.hcs08.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="" command="" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="com.freescale.hc08.cdt.toolchain.rs08.discoveryProfile">
+          <buildOutputProvider>
+            <openAction enabled="false" filePath="" />
+            <parser enabled="false" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="" command="" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="makefileGenerator">
+            <runAction arguments="-f $_scd.mk" command="make" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/specs.cpp" command="g++" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/specs.c" command="gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfile">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/$" command="gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileCPP">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/specs.cpp" command="g++" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+        <profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileC">
+          <buildOutputProvider>
+            <openAction enabled="true" filePath="" />
+            <parser enabled="true" />
+          </buildOutputProvider>
+          <scannerInfoProvider id="specsFile">
+            <runAction arguments="-E -P -v -dD $/specs.c" command="gcc" useDefault="true" />
+            <parser enabled="true" />
+          </scannerInfoProvider>
+        </profile>
+      </storageModule>
+      <storageModule moduleId="org.eclipse.cdt.core.externalSettings" />
+      <storageModule moduleId="org.eclipse.cdt.core.language.mapping" />
+    </cconfiguration>
+  </storageModule>
+  <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+    <project id="Ha OnOffSwitch.toolchain.hcs08.executable.1145809111" name="Freescale HCS08 Project" projectType="toolchain.hcs08.executable" />
+  </storageModule>
+</cproject>

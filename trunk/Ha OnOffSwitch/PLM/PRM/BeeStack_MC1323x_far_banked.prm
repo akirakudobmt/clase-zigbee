@@ -1,0 +1,281 @@
+/******************************************************************************
+* This file contains some basic linker parameters.
+*
+* The linker file matches the architecture of the Freescale MC1323x
+* controller used in the 802.15.4/Zigbee project with bootloader.
+*
+*
+* (c) Copyright 2010, Freescale, Inc. All rights reserved.
+*
+*
+* No part of this document must be reproduced in any form - including copied,
+* transcribed, printed or by any electronic means - without specific written
+* permission from Freescale Semiconductor.
+*
+******************************************************************************/
+#ifndef gStandardSecurity_d
+#define gStandardSecurity_d 0
+#endif
+
+#ifndef gHighSecurity_d
+#define gHighSecurity_d 0
+#endif
+
+#ifndef gNvStorageIncluded_d
+#define gNvStorageIncluded_d 0
+#endif
+
+#ifndef gUseBootloader_d
+  #define gUseBootloader_d 0
+#endif
+
+
+
+NAMES
+// Do not remove this block/section.
+// Description: The NAMES block contains a list of binary files building the
+// application. This block is mandatory and can only be specified once in a
+// prm file.
+// Additional files may be specified by the option -Add. The object files
+// specified with the option -Add are linked before the files mentioned in
+// the NAMES block. With the option -Add, additional files can be added to a
+// project without modifying the link parameter file.
+// If all binary files should be specified by the command line option -add,
+// then an empty NAMES block (just NAMES END) must be present in the link
+// parameter file. Object files added with this option are linked before the
+// object files specified in the NAMES block.
+END
+
+// **************************************************************************
+#if gUseBootloader_d
+   INIT _BootEntryPoint
+#endif
+
+// Memory map for MC1323x. The entire CPU memory space is defined.
+
+// Options
+// READ_WRITE   is for normal variables
+// READ_ONLY    is for const variables and code
+// NO_INIT      is for uninitialized variables
+//
+// Note: "RES_" means that the system is not allowed to use the specified memory.
+
+SECTIONS
+    // Port registers
+    // HW registers - This section contains often used port registers
+    DIRECT_PAGE_REGISTERS       = READ_WRITE 0x0000 TO 0x007F;  // RAM
+
+    // Fast RAM memory
+    ZERO_PAGE_RAM               = READ_WRITE 0x0080 TO 0x00FF;  // RAM
+
+    // Stack space
+    //
+    // The NV Storage code overlays the end of the stack with a buffer
+    // and some code space.
+    //
+    // Reserve space for the stack.
+    APP_STACK_RAM               = READ_WRITE 0x0100 TO 0x02FF;  // RAM
+    // An NV Storage burst mode flash sector. 64 bytes. The size is
+    // determined by the flash controller hardware.
+    NV_SECTOR_BUFFER_SECTION    = READ_WRITE 0x0100 TO 0x013F;   // RAM
+    // NV Storage copies code here. 90 bytes.
+    // ***WARNING*** Be careful with this one. A new version of the
+    // compiler, or a change in compiler options, could change the
+    // size needed.
+    NV_CODE_BUFFER_SECTION      = READ_WRITE 0x0140 TO 0x01A3;  // RAM
+    
+#if gUseBootloader_d     
+    /* Used for boot function - for function that write or erase flash
+       must reside in ram */
+    BOOT_NV_SECTOR_SECTION      = READ_WRITE 0x0100 TO 0x0108;  // RAM  
+    BOOT_NV_CODE_SECTION        = READ_WRITE 0x0109 TO 0x01A3;  // RAM
+#endif    
+
+    // General use RAM. .
+    // All of RAM that isn't reserved for something else.
+    APP_RAM                     = READ_WRITE 0x0300 TO 0x1447;  // RAM
+    // Data needed by early hardware initialization, and also by later
+    // C code. It must be available before the C data initialization
+    // procedure has run, but also must not be changed by that procedure,
+    // so it is put in it's own NO_INIT section.
+    // WARNING: The size of this section must be manually coordinated
+    // with the size of the data structure(s) it contains.
+    // Reserve 40 bytes.
+   
+    UNINITIALIZED_RAM           = NO_INIT    0x1448 TO 0x147F;  // RAM
+
+    //High page registers
+    HIGH_PAGE_REGISTERS         = READ_WRITE 0x1800 TO 0x187F;  // HW registers	
+
+#if gUseBootloader_d		
+    APP_STARTUP_STRUC_FLASH     = READ_ONLY 0x2080 TO 0x20AB;   // Flash
+    APP_STARTUP_CODE            = READ_ONLY 0x20AC TO 0x2114;   // Flash
+#if gNvStorageIncluded_d
+    APP_CODE_0                  = READ_ONLY 0x2115 TO 0x23FF;   // Flash
+#else
+    APP_CODE_0                  = READ_ONLY 0x2115 TO 0x33FF;   // Flash
+#endif
+
+#else // gUseBootloader_d	
+    APP_STARTUP_STRUC_FLASH     = READ_ONLY 0x2080 TO 0x20AF;   // Flash
+#if gNvStorageIncluded_d
+    APP_CODE_0                  = READ_ONLY 0x20B0 TO 0x23FF;   // Flash
+#else
+    APP_CODE_0                  = READ_ONLY 0x20B0 TO 0x33FF;   // Flash
+#endif	
+#endif // gUseBootloader_d
+
+#if gNvStorageIncluded_d
+    // Flash pages used for non-volatile storage. If any NV storage is
+    // used at all, there must be at least two pages: one for the current
+    // content of a single NV data set, and one to write the next version
+    // of the data set to.
+    // To change the number of data sets and/or NV storage pages:
+    //      Set gNvNumberOfDataSets_c in NVM_Interface.h, and
+    //      Make sure the number of entries in the NvDataSetTable[] array in
+    //      NV_Data.c matches the value of gNvNumberOfDataSets_c. and
+    //      Set NvNumberOfRawPages_c in NV_FlashHAL.h to >= gNvNumberOfDataSets_c + 1, and
+    //      Change "NV_STORAGE_PAGE_*_SECTION" and "NV_STORAGE_PAGE_*" in Beestack.prm
+    NV_STORAGE_PAGE_0_SECTION   = READ_ONLY 0x2400 TO 0x27FF;   // Flash
+    
+   
+    NV_STORAGE_PAGE_1_SECTION   = READ_ONLY 0x2800 TO 0x2BFF;   // Flash
+
+    // Use this (and change APP_CODE_2) for a third NV storage page.
+   
+    NV_STORAGE_PAGE_2_SECTION   = READ_ONLY 0x2C00 TO 0x2FFF;   // Flash
+
+    // Use this (and change APP_CODE_1 or APP_CODE_2) for a fourth NV storage page.
+    NV_STORAGE_PAGE_3_SECTION   = READ_ONLY 0x2E00 TO 0x31FF;   // Flash
+
+#if gStandardSecurity_d || gHighSecurity_d
+    NV_STORAGE_PAGE_4_SECTION   = READ_ONLY 0x3200 TO 0x35FF;
+#endif
+#endif
+    
+    // General use code space.
+    //
+   
+    // Use this version if there are 3 NV storage pages.
+#if gNvStorageIncluded_d
+#if gStandardSecurity_d || gHighSecurity_d
+    APP_CODE_0_1                   = READ_ONLY 0x3600 TO 0x3FFF;   // Flash
+#else    
+    APP_CODE_0_1                   = READ_ONLY 0x3200 TO 0x3FFF;   // Flash
+#endif    
+#else // gNvStorageIncluded_d
+    APP_CODE_0_1                   = READ_ONLY 0x3400 TO 0x3FFF;   // Flash
+#endif
+
+    APP_CODE_1                     = READ_ONLY 0x4000 TO 0x7FFF;   // Flash
+#if gUseBootloader_d
+    APP_CODE_2                     = READ_ONLY 0xC000 TO 0xFB9D;   // Flash
+
+   
+    /* Contain new image flag for bootloader check and image length*/
+    BOOT_INFO                      = READ_ONLY 0xFB9E TO 0xFB9F;
+    
+    // Copyright and related strings and some hardware parameters that are
+    // never changed by the embedded code. Reserve 336 bytes.
+    // Use a fixed location so they can easily be found during manufacturing,
+    // and put them at the end of flash space, so that changes in other
+    // sections do not need to move this.
+    FREESCALE_PROD_FLASH           = READ_ONLY 0xFBA0 TO 0xFBFF;   // Flash
+
+   
+   
+    /* BOOT CODE section used for storing the Bootloader code */
+    BOOT_ROM                      = READ_ONLY 0xFC00 TO 0xFFAF;   // Flash - boot code
+#else
+     APP_CODE_2                     = READ_ONLY 0xC000 TO 0xFF4F;   // Flash
+     FREESCALE_PROD_FLASH           = READ_ONLY 0xFF50 TO 0xFFAF;   // Flash
+#endif
+   
+   
+    RES_NV_REGISTERS_FLASH         = READ_ONLY 0xFFB0 TO 0xFFBF;   // Non-volatile registers
+   
+    RES_IRQ_VECTORS_TABLE_FLASH    = READ_ONLY 0xFFC0 TO 0xFFFD;   // ISR vectors
+
+    // Note! 802.15.4/App. does not have its own reset vector.
+    RES_RESET_VECTOR_FLASH         = READ_ONLY 0xFFFE TO 0xFFFF;   // System reset vector
+        /* banked FLASH ROM */
+    PPAGE_0                  =  READ_ONLY    0x008000 TO 0x00A07F;   
+    PPAGE_2                  =  READ_ONLY    0x028000 TO 0x02BFFF; 
+    PPAGE_4                  =  READ_ONLY    0x048000 TO 0x04BFFF; 
+END
+
+// **************************************************************************
+
+PLACEMENT  
+    MY_ZEROPAGE                 INTO ZERO_PAGE_RAM;
+    DEFAULT_RAM                 INTO APP_RAM;
+    
+#if gUseBootloader_d 
+    APP_STARTUP_FUNCTION        INTO APP_STARTUP_CODE;
+    BOOT_FLAG                   INTO BOOT_INFO;
+    .init                       INTO BOOT_ROM;
+    BOOTLOADER_CODE_ROM         INTO BOOT_ROM;
+    BOOTLOADER_DATA_ROM         INTO BOOT_ROM;
+    IRQ_VECTOR_SECTION_DEFAULT  INTO APP_CODE_2;
+ #endif   
+    
+
+    NON_BANKED                  INTO APP_CODE_1, APP_CODE_0_1,  APP_CODE_2, APP_CODE_0;
+    COPY                        INTO APP_CODE_0, APP_CODE_0_1,  APP_CODE_2, APP_CODE_1;     
+    ROM_VAR, STRINGS            INTO APP_CODE_0_1,  APP_CODE_2, APP_CODE_1, APP_CODE_0;
+    DEFAULT_ROM                 INTO  APP_CODE_2, APP_CODE_1,  APP_CODE_0_1, PPAGE_4, PPAGE_0, PPAGE_2, APP_CODE_0;
+    .startData                  INTO APP_STARTUP_STRUC_FLASH;
+    
+    
+    // Data needed by early hardware initialization, and also by later
+    // C code. It must be available before the C data initialization
+    // procedure has run, but also must not be changed by that procedure,
+    // so it is put in it's own NO_INIT section.
+    // WARNING: The size of this section must be manually coordinated
+    // with the size of the data structure(s) it contains.
+    HARDWARE_INIT_PARAMETERS    INTO UNINITIALIZED_RAM;
+
+    NV_SECTOR_BUFFER            INTO NV_SECTOR_BUFFER_SECTION;
+    NV_CODE_BUFFER              INTO NV_CODE_BUFFER_SECTION;
+#if gUseBootloader_d
+    BOOTLOADER_DATA_RAM         INTO BOOT_NV_SECTOR_SECTION;
+    BOOTLOADER_CODE_RAM         INTO BOOT_NV_CODE_SECTION;
+#endif
+
+
+#if gNvStorageIncluded_d
+    // Flash pages used for non-volatile storage.
+    NV_STORAGE_PAGE_0           INTO NV_STORAGE_PAGE_0_SECTION;
+    NV_STORAGE_PAGE_1           INTO NV_STORAGE_PAGE_1_SECTION;
+
+    // Use this if there are 3 NV storage pages.
+    NV_STORAGE_PAGE_2           INTO NV_STORAGE_PAGE_2_SECTION;
+
+    // Use this if there are 4 NV storage pages.
+    NV_STORAGE_PAGE_3           INTO NV_STORAGE_PAGE_3_SECTION;
+
+#if gStandardSecurity_d || gHighSecurity_d
+    // Use this if there are 5 NV storage pages.
+    NV_STORAGE_PAGE_4           INTO NV_STORAGE_PAGE_4_SECTION;
+#endif
+#endif   
+     
+    // Use a fixed location for copyright and related strings, so they
+    // can easily be found during manufacturing.
+    FREESCALE_PROD_DATA         INTO FREESCALE_PROD_FLASH;
+
+    NV_REGISTERS_SECTION        INTO RES_NV_REGISTERS_FLASH;
+    SSTACK                      INTO APP_STACK_RAM;
+    IRQ_VECTOR_SECTION          INTO RES_IRQ_VECTORS_TABLE_FLASH;
+    /* routines which can be banked */    
+    PAGED_ROM                   INTO PPAGE_0, PPAGE_2,PPAGE_4;
+END
+
+// **************************************************************************
+#if gUseBootloader_d
+  VECTOR 0 _BootEntryPoint /* reset vector: default entry point for a C/C++ application. */
+#else
+  VECTOR 0 _Startup /* reset vector: default entry point for a C/C++ application. */
+#endif
+
+
