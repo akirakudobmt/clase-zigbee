@@ -541,7 +541,8 @@ extern const poolInfo_t poolInfo[];
 #endif
 
   gAppTaskID = TS_CreateTask(gTsAppTaskPriority_c, BeeAppTask);
- 
+  gTimeTaskID = TS_CreateTask(gTsAppTaskPriority_c, TimeAppTask);
+  
 #ifdef gHostApp_d
   ZtcCPUResetBlackBox();
 #else
@@ -552,7 +553,10 @@ extern const poolInfo_t poolInfo[];
   
 #endif/*__IAR_SYSTEMS_ICC__*/
   
-  
+  /*Init Timer used to count seconds*/
+  gu8SecondsTimerID = TMR_AllocateTimer();    
+  TMR_StartIntervalTimer(gu8SecondsTimerID, 1000, vSecondsTimerCallback);
+      
   /* Start the task scheduler. Does not return. */
   TS_Scheduler();
 
