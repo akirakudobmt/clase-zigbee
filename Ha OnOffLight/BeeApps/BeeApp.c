@@ -93,6 +93,10 @@ zbStatus_t APSME_AddGroupRequest(zbApsmeAddGroupReq_t *pRequest);
 void OnOffLight_AppSetLightState(zbEndPoint_t endPoint, zclCmd_t command);
 void OnOffLight_AddGroups(void);
 
+void Uart2Dummyfn(const uint8_t *dmm);
+void TimeToString(const	uint8_t *rawTime, uint8_t *rtString);
+
+
 /******************************************************************************
 *******************************************************************************
 * Private Memory Declarations
@@ -104,6 +108,12 @@ void OnOffLight_AddGroups(void);
 * Public memory declarations
 *******************************************************************************
 ******************************************************************************/
+uint8_t gu8SecondsTimerID = 0;
+uint8_t gau8Time[] = {0,0,0};
+const uint8_t gu8Dummy = 0;
+
+tsTaskID_t gTimeTaskID =0;
+static unsigned char time_string[10];
 
 zbEndPoint_t appEndPoint;
 
@@ -246,6 +256,17 @@ void BeeAppHandleKeys
       case gKBD_EventLongSW2_c:
         break;
 
+      /*Misael -- Send the hour by serial port */
+	  case gKBD_EventSW3_c:
+		  TimeToString(gau8Time,time_string);    	  
+		  (void)Uart2_Transmit(time_string, sizeof(time_string), Uart2Dummyfn);    	  
+		break;
+		
+	  case gKBD_EventSW4_c:
+	          LED_ToggleLed(LED4);
+	  break;
+
+              	
       /* all other keys handled by ASL */
       default:
         ASL_HandleKeys(keyCode);
@@ -476,3 +497,93 @@ void
 }
 #endif 
 
+void TimeAppTask(event_t events)
+  {
+    /* received one or more data confirms */
+    if(events & SECONDS_EVENT_REPORT)
+    {
+    	LED_ToggleLed(LED1);
+    
+    	if(gau8Time[SECONDS]<60)
+    	{
+    		gau8Time[SECONDS]++;
+    	}
+    	else
+    	{
+    		gau8Time[SECONDS] = 0;    	
+    		TS_SendEvent(gTimeTaskID, MINUTES_EVENT_REPORT);
+    	}
+    }
+    
+    if(events & MINUTES_EVENT_REPORT)
+    {
+    	LED_ToggleLed(LED2);
+    
+    	if(gau8Time[MINUTES]<60)
+    	{
+    		gau8Time[MINUTES]++;
+    	}
+    	else
+    	{
+    		gau8Time[MINUTES] = 0;    	
+    		TS_SendEvent(gTimeTaskID, HOURS_EVENT_REPORT);
+    	}
+    }
+    
+    if(events & HOURS_EVENT_REPORT)
+    {
+    	LED_ToggleLed(LED3);
+    
+    	if(gau8Time[HOURS]<24)
+    	{
+    		gau8Time[HOURS]++;
+    	}
+    	else
+    	{
+    		gau8Time[HOURS] = 0;
+    	}
+    }    
+  }
+
+void vSecondsTimerCallback(tmrTimerID_t TimerID)
+  {	  
+	  (void)TimerID;
+	  TS_SendEvent(gTimeTaskID, SECONDS_EVENT_REPORT);    
+  }
+
+// writes to reference pointer // Receives an array of 3 bytes
+void TimeToString(const uint8_t *rawTime,uint8_t *rtString) 
+{             
+       uint8_t auxX;
+       uint8_t auxY;
+       uint8_t auxZ;
+
+       for(auxX = 0; auxX<3; auxX++)
+       {
+               if(rawTime[auxX] > 9)
+               {
+                       auxY = (uint8_t)(rawTime[auxX]/10);
+                       auxZ = (uint8_t)(rawTime[auxX] - (auxY * 10));
+                       *(rtString++) = auxY + '0';
+                       *(rtString++) = auxZ + '0';
+               }else{
+                       *(rtString++) = '0';
+                       *(rtString++) = rawTime[auxX] + '0';
+               }
+               
+               if(auxX==2)
+               {
+            	   *(rtString++) = '\n';
+            	   *(rtString++) = '\r'; 
+               }
+               else
+               {
+            	   *(rtString++) = ':';   
+               }
+       }       
+}
+
+void Uart2Dummyfn(const uint8_t *dmm){
+	asm nop;
+	asm nop;
+}

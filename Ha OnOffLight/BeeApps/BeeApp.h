@@ -24,6 +24,14 @@
 * Public Macros
 *******************************************************************************
 ******************************************************************************/
+#define SECONDS 2
+#define MINUTES 1
+#define HOURS   0
+
+#define SECONDS_EVENT_REPORT   	(1<<SECONDS)
+#define MINUTES_EVENT_REPORT	(1<<MINUTES)
+#define	HOURS_EVENT_REPORT		(1<<HOURS)
+
 #define gHaOnOffLight_d 1
 
 #define gIdentifyTimeSecs_d 10
@@ -86,7 +94,9 @@
 * Public Memory Declarations
 *******************************************************************************
 ******************************************************************************/
-
+extern uint8_t gu8SecondsTimerID;
+uint8_t gau8Time[];
+extern tsTaskID_t gTimeTaskID;
 /******************************************************************************
 *******************************************************************************
 * Public Prototypes
@@ -100,4 +110,8 @@ void BeeAppHandleKeys(key_event_t keyCode);
 /* tell applicaton about change in HA status */
 void BeeAppUpdateDevice(zbEndPoint_t endPoint, zclUIEvent_t event, zclAttrId_t attrId, zbClusterId_t clusterId, void *pData);
 /**********************************************************************************/
+
+void TimeAppTask(event_t events);
+void vSecondsTimerCallback(tmrTimerID_t TimerID);
+
 #endif /* _BAPP_H_ */
