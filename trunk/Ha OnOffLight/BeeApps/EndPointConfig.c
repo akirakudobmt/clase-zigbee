@@ -131,11 +131,30 @@ const endPointDesc_t Endpoint8_EndPointDesc = {
   AppCnfCallBack,        /* Callback function for data confirmation */
 gApsWindowSizeDefault_c        /* Values 1 - 8, 0 if fragmentation is not supported. */
 };
+
+const zbSimpleDescriptor_t Endpoint9_simpleDescriptor = {
+  9, /* Endpoint number */
+  0x4, 0x1, /* Application profile ID */
+  0x0, 0x1, /* Application device ID */
+  0, /* Application version ID */
+  5, /* Number of input clusters */
+  (uint8_t *) Endpoint8_InputClusterList, /* Input cluster list */
+  0, /* Number of output clusters */
+  (uint8_t *) Endpoint8_OutputClusterList, /* Output cluster list */
+};
+
+const endPointDesc_t Endpoint9_EndPointDesc = {
+  (zbSimpleDescriptor_t *)&Endpoint9_simpleDescriptor,  /* pointer to the simple descriptor stored for the endpoint */
+  AppMsgCallBack,        /* Callback function for MSG data */
+  AppCnfCallBack,        /* Callback function for data confirmation */
+gApsWindowSizeDefault_c        /* Values 1 - 8, 0 if fragmentation is not supported. */
+};
 /*-- Endpoint End --*/
 
 /*- Endpoint list Start-*/
-const endPointList_t endPointList[1] = {
-  {&Endpoint8_EndPointDesc, &gHaOnOffLightDeviceDef}
+const endPointList_t endPointList[2] = {
+  {&Endpoint8_EndPointDesc, &gHaOnOffLightDeviceDef},
+  {&Endpoint9_EndPointDesc, &gHaOnOffLightDeviceDef9}
 };
 /*- Endpoint list End-*/
 /* END Endpoint Descriptor Section */
