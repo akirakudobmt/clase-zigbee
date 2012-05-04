@@ -201,6 +201,8 @@ extern const afDeviceDef_t gNoDeviceDef;
 
 /* used for BeeKit autogeneration of HA endpoints */
 extern const afDeviceDef_t gHaOnOffLightDeviceDef;
+extern const afDeviceDef_t gHaOnOffLightDeviceDef9;
+
 extern const afDeviceDef_t gHaDimmableLightDeviceDef;
 extern const afDeviceDef_t gHaOnOffSwitchDeviceDef;
 extern const afDeviceDef_t gHaDimmerSwitchDeviceDef;

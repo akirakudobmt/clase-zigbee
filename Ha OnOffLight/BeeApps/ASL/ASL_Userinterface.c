@@ -936,7 +936,12 @@ void ASL_HandleKeys
 
     /* cfg.SW4 - Walk through all the channels (only when idle) */
     case gKBD_EventSW4_c:
+    	if (appState != mStateIdle_c) {
+    	        ASL_UpdateDevice(appEndPoint9,gBind_Device_c);       
+    	        ASL_EndDeviceBindRequest(NULL,aDestAddress,endPointList[1].pEndpointDesc->pSimpleDesc);
+    	      }
 
+	#if 0
       /* only allow selecting if not on network */
       if(appState == mStateIdle_c) {
         zbChannels_t aChannelMask = {0x00, 0x00, 0x00, 0x00};
@@ -959,6 +964,8 @@ void ASL_HandleKeys
 
       /* display current channel on LEDs (0x0=channel 11, 0x1=channel 12, 0xf=channel 26) */
       ASL_UpdateDevice(DummyEndPoint,gScanningChannels_c);
+	#endif
+    
       break;
 
     case gKBD_EventLongSW1_c:

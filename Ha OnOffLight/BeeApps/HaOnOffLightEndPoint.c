@@ -57,8 +57,25 @@ zclOnOffLightSceneData_t gHaOnOffLightSceneData =
   
 };
 
+zclOnOffLightSceneData_t gHaOnOffLightSceneData9 =
+{
+  {
+    0,    /* # of active elements in scene table */
+    0, 0, /* current group */
+    0,    /* current scene */
+    0,    /* is this currently a valid scene? */
+#if gZclClusterOptionals_d
+    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, /* IEEE address of the device that last configured the scenes */
+#endif
+    sizeof(zclOnOffLightSceneTableEntry_t) /* size of an entry in the scenes table */
+  }
+  
+};
+
 /* make sure to have once copy of this structure per instance of this device */
 haOnOffLightAttrRAM_t gHaOnOffLightData = {0x00,{0x00,0x00,0x00}};
+
+haOnOffLightAttrRAM_t gHaOnOffLightData9 = {0x00,{0x00,0x00,0x00}};
 
 /* only need 1 copy of this structure for all instances of this device type */
 afClusterDef_t const gaHaOnOffLightClusterList[] =
@@ -101,7 +118,16 @@ afDeviceDef_t const gHaOnOffLightDeviceDef =
   &gHaOnOffLightSceneData                    /* pointer to scene data */
 };
 
-
+afDeviceDef_t const gHaOnOffLightDeviceDef9 =
+{
+ (pfnIndication_t)ZCL_InterpretFoundationFrame,
+  NumberOfElements(gaHaOnOffLightClusterList),
+  (afClusterDef_t *)gaHaOnOffLightClusterList,  /* pointer to Cluster List */
+  NumberOfElements(gaHaOnOffLightReportList),
+  (zclReportAttr_t *)gaHaOnOffLightReportList,  /* pointer to report attribute list */
+  &gHaOnOffLightData9,                           /* pointer to endpoint data */
+  &gHaOnOffLightSceneData9                    /* pointer to scene data */
+};
 /******************************************************************************
 *******************************************************************************
 * Private memory declarations

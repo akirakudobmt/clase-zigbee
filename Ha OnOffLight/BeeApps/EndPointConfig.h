@@ -23,7 +23,7 @@
 ******************************************************************************/
 #define GetEndpoint(Number) (endPointList[Number].pEndpointList->pSimpleDesc->endPoint)
 
-#define gNum_EndPoints_c                1
+#define gNum_EndPoints_c                2
 
 #define gTotalNum_EndPoints_c          (2 + gNum_EndPoints_c)
 

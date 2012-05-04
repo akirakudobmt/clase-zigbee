@@ -216,5 +216,6 @@ extern  uint8_t gmUserInterfaceMode;
 extern ASL_Data_t gAslData;
 extern const uint8_t gaHexValue[];
 extern zbEndPoint_t appEndPoint;
+extern zbEndPoint_t appEndPoint9;
 
 #endif  /*  _ASL_USER_INTERFACE_H_  */
