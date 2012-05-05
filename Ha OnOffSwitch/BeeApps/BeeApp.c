@@ -101,6 +101,7 @@ void OnOffSwitch_StoreSceneHandler(void);
 ******************************************************************************/
 
 zbEndPoint_t appEndPoint;
+zbEndPoint_t appEndPoint10;
 
 /******************************************************************************
 *******************************************************************************
@@ -156,9 +157,10 @@ void BeeAppInit
 
   /* where to send switch commands from */
   appEndPoint = endPointList[0].pEndpointDesc->pSimpleDesc->endPoint;
-
+  appEndPoint10 = endPointList[1].pEndpointDesc->pSimpleDesc->endPoint;
+  
   /* start with all LEDs off */
-  ASL_InitUserInterface("HaOnOffSwitch");
+  ASL_InitUserInterface("HaOnOffSwitch_EP");
 
 }
 
@@ -295,6 +297,10 @@ void BeeAppHandleKeys
         lastCmd = BeeAppGetSwitchCommand(1);
         OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,EndPoint, lastCmd, gApsTxOptionAckTx_c);          
       }
+      break;
+    case gKBD_EventSW4_c: /* Sends a Toggle command to the light */
+        lastCmd = gZclCmdOnOff_Toggle_c;
+        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,appEndPoint10,lastCmd, 0);          
       break;
     /* LongSW3-> Toggle Identify Mode, Long SW4-> Recall Scene */
     default: /* Sw3, Sw4, LongSw1, LongS3 and LongS4 cases */

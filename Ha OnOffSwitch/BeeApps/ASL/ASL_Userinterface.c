@@ -822,7 +822,16 @@ void ASL_HandleKeys
 
   /* common application mode switches */
   if (gmUserInterfaceMode == gApplicationMode_c) {
-    switch (events){
+    switch (events){  
+    case gKBD_EventSW2_c:
+		/* identify Mode for 10 Seconds */
+		if(!ZCL_IdentifyTimeLeft(appEndPoint10))
+		  time = gIdentifyTimeSecs_d;
+		else
+		  time = 0;
+		ZCL_SetIdentifyMode(appEndPoint10, Native2OTA16(time));
+		break;
+            
       case gKBD_EventSW3_c:
         /* identify Mode for 10 Seconds */
         if(!ZCL_IdentifyTimeLeft(appEndPoint))
