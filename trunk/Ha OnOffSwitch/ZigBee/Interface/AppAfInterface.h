@@ -203,6 +203,7 @@ extern const afDeviceDef_t gNoDeviceDef;
 extern const afDeviceDef_t gHaOnOffLightDeviceDef;
 extern const afDeviceDef_t gHaDimmableLightDeviceDef;
 extern const afDeviceDef_t gHaOnOffSwitchDeviceDef;
+extern const afDeviceDef_t gHaOnOffSwitchDeviceDef10;
 extern const afDeviceDef_t gHaDimmerSwitchDeviceDef;
 extern const afDeviceDef_t gHaRangeExtenderDeviceDef;
 extern const afDeviceDef_t gHaThermostatDeviceDef;

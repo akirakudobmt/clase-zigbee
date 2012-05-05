@@ -144,6 +144,7 @@ ESPRegTable_t RegistrationTable[RegistrationTableEntries_c] = {0};
 tmrTimerID_t gGetProfileTestTimerID;
 
 extern uint8_t appEndPoint;
+extern uint8_t appEndPoint10;
 /************** KEY ESTABLISHMENT CLUSTER ***************************************/
 /*****************************************************************************/
 /*Variables used by KeyEstab cluster                                         */

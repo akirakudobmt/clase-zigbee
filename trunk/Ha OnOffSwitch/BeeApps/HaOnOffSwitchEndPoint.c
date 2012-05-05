@@ -39,6 +39,7 @@
 ******************************************************************************/
 
 haOnOffSwitchAttrRAM_t gHaOnOffSwitchData;
+haOnOffSwitchAttrRAM_t gHaOnOffSwitchData10;
 
 /* list of clusters and function handlers */
 afClusterDef_t const gaHaOnOffSwitchClusterList[] =
@@ -66,6 +67,16 @@ afDeviceDef_t const gHaOnOffSwitchDeviceDef =
   0,            /* no reportable attributes for an OnOffSwitch */
   NULL,
   &gHaOnOffSwitchData
+};
+
+afDeviceDef_t const gHaOnOffSwitchDeviceDef10 =
+{
+  (pfnIndication_t)ZCL_InterpretFoundationFrame,
+  NumberOfElements(gaHaOnOffSwitchClusterList),
+  (afClusterDef_t *)gaHaOnOffSwitchClusterList,  /* pointer to AF Cluster List */
+  0,            /* no reportable attributes for an OnOffSwitch */
+  NULL,
+  &gHaOnOffSwitchData10
 };
 
 /******************************************************************************
