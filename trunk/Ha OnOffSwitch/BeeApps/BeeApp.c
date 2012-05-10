@@ -131,7 +131,7 @@ void BeeAppDataConfirm(void);
 void BeeAppInterPanDataConfirm(void);
 void BeeAppInterPanDataIndication(void);
 #endif 
-void OnOffSwitch_SetLightState(zbAddrMode_t addrMode, zbNwkAddr_t aNwkAddr, zbEndPoint_t dstEndPoint, uint8_t command, zbApsTxOption_t txOptions);
+void OnOffSwitch_SetLightState(zbAddrMode_t addrMode, zbNwkAddr_t aNwkAddr,zbEndPoint_t scrEndPoint, zbEndPoint_t dstEndPoint, uint8_t command, zbApsTxOption_t txOptions);
 
 /*****************************************************************************
 * BeeAppInit
@@ -279,13 +279,13 @@ void BeeAppHandleKeys
     switch ( events ) {      
     case gKBD_EventSW1_c: /* Sends a Toggle command to the light */
       lastCmd = gZclCmdOnOff_Toggle_c;
-      OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,EndPoint,lastCmd, 0);          
+      OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress, appEndPoint, EndPoint,lastCmd, 0);          
       break;
     case gKBD_EventSW2_c: /* Sends a On command to the light with acknoledge */       
       if ((gSendingNwkData.gAddressMode == gZbAddrModeIndirect_c) || (gSendingNwkData.gAddressMode == gZbAddrMode16Bit_c))
       {
         lastCmd = BeeAppGetSwitchCommand(0);
-        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,EndPoint, lastCmd, gApsTxOptionAckTx_c);
+        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,appEndPoint,EndPoint, lastCmd, gApsTxOptionAckTx_c);
       }
       break;
     /* SW3-> Toggle Identify Mode, SW4-> Recall Scene */
@@ -295,12 +295,12 @@ void BeeAppHandleKeys
       if ((gSendingNwkData.gAddressMode == gZbAddrModeIndirect_c) || (gSendingNwkData.gAddressMode == gZbAddrMode16Bit_c))
       {
         lastCmd = BeeAppGetSwitchCommand(1);
-        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,EndPoint, lastCmd, gApsTxOptionAckTx_c);          
+        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress, appEndPoint, EndPoint, lastCmd, gApsTxOptionAckTx_c);          
       }
       break;
     case gKBD_EventSW4_c: /* Sends a Toggle command to the light */
         lastCmd = gZclCmdOnOff_Toggle_c;
-        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,appEndPoint10,lastCmd, 0);          
+        OnOffSwitch_SetLightState(gSendingNwkData.gAddressMode,aDestAddress,appEndPoint10,EndPoint,lastCmd, 0);          
       break;
     /* LongSW3-> Toggle Identify Mode, Long SW4-> Recall Scene */
     default: /* Sw3, Sw4, LongSw1, LongS3 and LongS4 cases */
@@ -514,6 +514,7 @@ void OnOffSwitch_SetLightState
   (
   zbAddrMode_t  addrMode,     /* IN: address mode (indirect, group, 16bit */
   zbNwkAddr_t   aNwkAddr,     /* IN: nwk address or group */
+  zbEndPoint_t  scrEndPoint,
   zbEndPoint_t  dstEndPoint,  /* IN: APP endpoint */
   uint8_t command,            /* IN: command (on/off/toggle) */
   zbApsTxOption_t txOptions   /* IN: send with (or without) end-to-end acknowledement */
@@ -526,7 +527,7 @@ void OnOffSwitch_SetLightState
   Copy2Bytes(req.addrInfo.dstAddr.aNwkAddr, aNwkAddr);
   req.addrInfo.dstEndPoint = dstEndPoint;
   Set2Bytes(req.addrInfo.aClusterId, gZclClusterOnOff_c);
-  req.addrInfo.srcEndPoint = appEndPoint;
+  req.addrInfo.srcEndPoint = scrEndPoint;
   req.addrInfo.txOptions = txOptions;
   req.addrInfo.radiusCounter = afDefaultRadius_c;
 
